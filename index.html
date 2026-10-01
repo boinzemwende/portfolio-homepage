@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="P. Elisée Yanna – IT Ingenieur mit LPIC-1, 5 Jahren IT-Erfahrung, Fokus auf Linux, Kubernetes, Git, Anwendungsbetrieb, Consulting und Betrieb."
+    />
+    <title>P. Elisée Yanna | IT Ingenieur | LPIC-1</title>
+    <style>
+      :root {
+        --bg: #08131d;
+        --bg-2: #0d1b2a;
+        --panel: rgba(17, 28, 40, 0.85);
+        --panel-alt: rgba(12, 23, 34, 0.92);
+        --line: rgba(255, 255, 255, 0.08);
+        --text: #ebf5ff;
+        --muted: #a9bfd1;
+        --primary: #6ad6ff;
+        --primary-2: #7ef0d1;
+        --accent: #91a5ff;
+        --shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #061018 0%, #0a1826 100%);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      img { max-width: 100%; display: block; }
+
+      .container {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        background: rgba(8, 19, 29, 0.75);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 76px;
+      }
+
+      .brand {
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .brand span { color: var(--primary); }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover { color: var(--text); }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.9rem 1.4rem;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover { transform: translateY(-2px); }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #06141d;
+        box-shadow: var(--shadow);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid var(--line);
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 6rem 0 4rem;
+        background:
+          radial-gradient(circle at left top, rgba(106, 214, 255, 0.15), transparent 22%),
+          radial-gradient(circle at right bottom, rgba(126, 240, 209, 0.12), transparent 26%);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 0.8fr;
+        gap: 2rem;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0.9rem;
+        border-radius: 999px;
+        border: 1px solid rgba(126, 240, 209, 0.28);
+        background: rgba(126, 240, 209, 0.06);
+        color: var(--primary-2);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.75rem;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.9rem, 6vw, 5.1rem);
+        line-height: 0.97;
+        letter-spacing: -0.06em;
+      }
+
+      .gradient {
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      .lead {
+        margin-top: 1.3rem;
+        max-width: 680px;
+        font-size: 1.08rem;
+        color: var(--muted);
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(120px, 1fr));
+        gap: 1rem;
+        max-width: 620px;
+        margin-top: 2.2rem;
+      }
+
+      .stat {
+        padding: 1rem 1.1rem;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.6rem;
+        color: var(--primary);
+        line-height: 1.2;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .card-panel {
+        position: relative;
+        padding: 1.5rem;
+        border-radius: 24px;
+        background: linear-gradient(180deg, rgba(17, 29, 41, 0.92), rgba(13, 24, 36, 0.92));
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+        min-height: 420px;
+        overflow: hidden;
+      }
+
+      .glow {
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        border-radius: 50%;
+        right: -42px;
+        top: -42px;
+        background: radial-gradient(circle, rgba(106, 214, 255, 0.4), rgba(106, 214, 255, 0.08), transparent 65%);
+        filter: blur(12px);
+      }
+
+      .profile-box {
+        position: relative;
+        z-index: 1;
+        margin-top: 2.2rem;
+        padding: 1.4rem;
+        border-radius: 18px;
+        background: rgba(8, 19, 29, 0.95);
+        border: 1px solid var(--line);
+      }
+
+      .profile-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      .avatar {
+        width: 64px;
+        height: 64px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-size: 1.5rem;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        color: #071621;
+      }
+
+      .badge {
+        padding: 0.45rem 0.78rem;
+        border-radius: 999px;
+        border: 1px solid rgba(106, 214, 255, 0.28);
+        background: rgba(106, 214, 255, 0.08);
+        color: var(--primary);
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .quick-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.8rem;
+        color: var(--muted);
+      }
+
+      .quick-list li {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+      }
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        margin-top: 0.44rem;
+        flex-shrink: 0;
+      }
+
+      section { padding: 2rem 0 1rem; }
+
+      .section-head {
+        max-width: 720px;
+        margin: 0 auto 2rem;
+        text-align: center;
+      }
+
+      .section-head h2 {
+        margin: 0 0 0.7rem;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.05em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .services {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(220px, 1fr));
+        gap: 1.25rem;
+      }
+
+      .service-card {
+        padding: 1.4rem;
+        background: linear-gradient(180deg, rgba(17, 29, 41, 0.88), rgba(10, 21, 31, 0.9));
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .icon {
+        width: 54px;
+        height: 54px;
+        margin-bottom: 1rem;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(106, 214, 255, 0.12), rgba(126, 240, 209, 0.12));
+        border: 1px solid rgba(106, 214, 255, 0.18);
+        font-size: 1.35rem;
+      }
+
+      .service-card h3 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem;
+      }
+
+      .service-card p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1.3rem;
+        align-items: stretch;
+      }
+
+      .about-text,
+      .skills-box {
+        padding: 1.5rem;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--line);
+      }
+
+      .about-text p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.7rem;
+        margin-top: 1rem;
+      }
+
+      .tag {
+        padding: 0.6rem 0.8rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.02);
+        color: #ebf5ff;
+        font-size: 0.83rem;
+      }
+
+      .timeline {
+        position: relative;
+        padding-left: 1.5rem;
+        border-left: 2px solid rgba(106, 214, 255, 0.28);
+      }
+
+      .time-item {
+        position: relative;
+        padding: 0 0 1.2rem 1.2rem;
+      }
+
+      .time-item::before {
+        content: "";
+        position: absolute;
+        left: -1.75rem;
+        top: 0.3rem;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary), var(--primary-2));
+        box-shadow: 0 0 0 6px rgba(106, 214, 255, 0.08);
+      }
+
+      .time-item .year {
+        color: var(--primary-2);
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+      }
+
+      .time-item h4 {
+        margin: 0 0 0.3rem;
+        font-size: 1.08rem;
+      }
+
+      .time-item p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .contact-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        padding: 2rem;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        background: linear-gradient(135deg, rgba(17, 29, 41, 0.95), rgba(12, 25, 36, 0.95));
+        box-shadow: var(--shadow);
+      }
+
+      .contact-box h3 {
+        margin: 0 0 0.4rem;
+        font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+        letter-spacing: -0.05em;
+      }
+
+      .contact-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      footer {
+        padding: 1.4rem 0 2.4rem;
+        text-align: center;
+        color: var(--muted);
+        border-top: 1px solid var(--line);
+      }
+
+      @media (max-width: 900px) {
+        .hero-grid,
+        .about-grid,
+        .services {
+          grid-template-columns: 1fr;
+        }
+
+        .nav-links { display: none; }
+      }
+
+      @media (max-width: 560px) {
+        .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .stats {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-box {
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="container nav">
+        <div class="brand"><span>IT</span> Ingenieur</div>
+        <nav class="nav-links">
+          <a href="#leistungen">Leistungen</a>
+          <a href="#ueber-mich">Über mich</a>
+          <a href="#erfahrung">Erfahrung</a>
+          <a href="#kontakt">Kontakt</a>
+        </nav>
+        <a class="btn btn-primary" href="#kontakt">Kostenlose Beratung</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">LPIC-1 • Anwendungsbetrieb • Consulting</div>
+            <h1>
+              <span class="gradient">P. Elisée Yanna</span><br />
+              IT-<span class="gradient">Ingenieur</span><br />
+              für Betrieb, Stabilität und Beratung.
+            </h1>
+
+            <p class="lead">
+              Ich bin IT-Ingenieur mit 5 Jahren Erfahrung in der IT und habe mich besonders auf Linux,
+              Kubernetes, Git, Confluence und den operativen Betrieb von Anwendungen spezialisiert.
+              Mein Fokus liegt auf zuverlässigem Betrieb, praxisnaher Beratung und nachhaltigen IT-Lösungen.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#kontakt">Jetzt kontaktieren</a>
+              <a class="btn btn-secondary" href="#leistungen">Mehr erfahren</a>
+            </div>
+
+            <div class="stats">
+              <div class="stat">
+                <strong>5+</strong>
+                <span>Jahre Erfahrung</span>
+              </div>
+              <div class="stat">
+                <strong>LPIC-1</strong>
+                <span>Linux-Kenntnisse</span>
+              </div>
+              <div class="stat">
+                <strong>24/7</strong>
+                <span>Support-Mentalität</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="glow"></div>
+            <div class="profile-box">
+              <div class="profile-head">
+                <div class="avatar">PE</div>
+                <div class="badge">Betrieb & Beratung</div>
+              </div>
+
+              <ul class="quick-list">
+                <li><span class="dot"></span><span>Linux-Systembetrieb und Infrastruktur</span></li>
+                <li><span class="dot"></span><span>Kubernetes und containerisierte Umgebungen</span></li>
+                <li><span class="dot"></span><span>Git-basierte Workflows und Versionierung</span></li>
+                <li><span class="dot"></span><span>Confluence & technische Dokumentation</span></li>
+                <li><span class="dot"></span><span>Anwendungsbetrieb und nachhaltige Prozesse</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="leistungen">
+        <div class="container">
+          <div class="section-head">
+            <h2>Leistungen</h2>
+            <p>
+              Ich kombiniere technischen Betrieb mit sinnvoller Beratung – stabil, klar und praxisorientiert.
+            </p>
+          </div>
+
+          <div class="services">
+            <article class="service-card">
+              <div class="icon">🛠️</div>
+              <h3>IT-Consulting</h3>
+              <p>
+                Beratung bei der Optimierung von IT-Prozessen, Betriebskonzepten und technisch tragfähigen Lösungen.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <div class="icon">⚙️</div>
+              <h3>Anwendungsbetrieb</h3>
+              <p>
+                Betrieb, Überwachung und Stabilisierung von Anwendungen mit Fokus auf Verfügbarkeit und Effizienz.
+              </p>
+            </article>
+
+            <article class="service-card">
+              <div class="icon">☁️</div>
+              <h3>Linux & Kubernetes</h3>
+              <p>
+                Unterstützung bei Linux-Umgebungen, Containerisierung und modernen Betriebsmodellen im produktiven Einsatz.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ueber-mich">
+        <div class="container about-grid">
+          <div class="about-text">
+            <div class="section-head" style="text-align:left; margin:0 0 1rem; max-width:none;">
+              <h2>Über mich</h2>
+            </div>
+            <p>
+              Als IT-Ingenieur mit 5 Jahren Berufserfahrung begleite ich Unternehmen im Betrieb und in der Weiterentwicklung ihrer IT-Umgebungen.
+              Meine Stärken liegen in der Kombination aus technischem Verständnis, operativer Verantwortung und verständlicher Kommunikation.
+            </p>
+            <br />
+            <p>
+              Ich unterstütze dabei nicht nur den technischen Betrieb, sondern auch den Aufbau von klaren Prozessen, dokumentierten Abläufen und robusten Lösungen,
+              die im Alltag funktionieren und langfristig verlässlich sind.
+            </p>
+          </div>
+
+          <div class="skills-box">
+            <div class="section-head" style="text-align:left; margin:0 0 1rem; max-width:none;">
+              <h2 style="font-size:1.8rem;">Technologien</h2>
+            </div>
+            <div class="tags">
+              <span class="tag">Linux</span>
+              <span class="tag">Kubernetes</span>
+              <span class="tag">Git</span>
+              <span class="tag">Confluence</span>
+              <span class="tag">Anwendungsbetrieb</span>
+              <span class="tag">IT-Betrieb</span>
+              <span class="tag">Support</span>
+              <span class="tag">Consulting</span>
+              <span class="tag">Dokumentation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="erfahrung">
+        <div class="container">
+          <div class="section-head">
+            <h2>Erfahrung</h2>
+            <p>
+              Praktische Erfahrung in IT-Betrieb, Linux-Umgebungen und operativer Unterstützung.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <div class="time-item">
+              <div class="year">2020 – heute</div>
+              <h4>IT-Ingenieur / Anwendungsbetrieb</h4>
+              <p>Betreuung von IT-Umgebungen, Anwendungen und operativen Prozessen mit Fokus auf Zuverlässigkeit und Dokumentation.</p>
+            </div>
+
+            <div class="time-item">
+              <div class="year">2019 – 2020</div>
+              <h4>Linux & Systembetrieb</h4>
+              <p>Arbeit mit Linux-Umgebungen, Betriebsabläufen und stabilen, gut dokumentierten IT-Setups.</p>
+            </div>
+
+            <div class="time-item">
+              <div class="year">2018 – 2019</div>
+              <h4>IT-Support & Consulting</h4>
+              <p>Unterstützung bei technischen Aufgaben, Anforderungen und der Umsetzung sinnvoller Betriebsprozesse.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="kontakt" style="padding-bottom:4rem;">
+        <div class="container">
+          <div class="contact-box">
+            <div>
+              <h3>Bereit für einen starken IT-Partner?</h3>
+              <p>LPIC-1, Anwendungsbetrieb, Consulting, Betrieb und technische Unterstützung aus einer Hand.</p>
+            </div>
+            <a class="btn btn-primary" href="mailto:hello@deine-domain.de">Kontakt aufnehmen</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2025 P. Elisée Yanna · IT Ingenieur · LPIC-1 · Anwendungsbetrieb · Consulting · Betrieb
+    </footer>
+  </body>
+</html>
